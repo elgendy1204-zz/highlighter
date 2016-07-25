@@ -12,6 +12,7 @@ const uglify = require('gulp-uglify');
 const sourceFile = './src/js/highlighter.js';
 const destFile = 'highlighter.min.js';
 const destFolder = './dist/js/';
+// const gulpSequence = require('gulp-sequence');
 
 gulp.task('sass:dev', () => {
 	return gulp.src('./src/sass/style.scss')
@@ -55,7 +56,7 @@ gulp.task("js:dev", () => {
 
 gulp.task('compress', function(cb) {
 	pump([
-			gulp.src('./dist/js/main.min.js'),
+			gulp.src('./dist/js/**/*.js'),
 			uglify({ mangle: true }),
 			gulp.dest(destFolder)
 		],
@@ -65,12 +66,16 @@ gulp.task('compress', function(cb) {
 
 gulp.task('watch', () => {
 	gulp.watch('./src/sass/**/*.scss', ['sass:dev']);
-	gulp.watch('./src/js/*.js'], ['js:dev']);
+	// gulp.watch('./src/js/*.js'], ['js:dev']);
 });
 
-gulp.task('default', ['sass:dev', 'js:dev','watch']);
+gulp.task('default', ['sass:dev', 'watch']);
 
 function swallowError(error) {
 	console.log(error.toString());
 	this.emit('end');
 }
+
+// gulp.task('production', ['sass', 'js']);
+
+// gulp.task('productionSequence', gulpSequence(['sass', 'js'], 'compress'));
