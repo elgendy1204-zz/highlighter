@@ -1,4 +1,4 @@
-var Highlighter = (function() {
+var Highlighter = (function($) {
 
 	function Highlighter(options) {
 		this.options = options;
@@ -27,28 +27,49 @@ var Highlighter = (function() {
 		var element = highlighter.getElement();
 		var canvasElement = document.createElement('canvas');
 		var canvasContainer = document.createElement('div');
-		if(wholeContainer.style.position != 'absolute'){
-			wholeContainer.style.position = 'relative';
-		}
+
+		wholeContainer.style.position = wholeContainer.style.position != 'absolute' ? 'relative' : 'absolute';
+
+		// Adjust canvas container dimensions with none scaled element
 		canvasContainerAdjustDimensions(highlighter, canvasContainer, element);
+
+		// Adjust canvas dimensions
 		canvasElementAdjustDimensions(canvasElement, element);
+
+		// add highlighter
 		canvasContainer.appendChild(canvasElement);
 		wholeContainer.appendChild(canvasContainer);
-
 		highlighter.options.canvasContainer = canvasContainer;
+
+		// bind canvas to element on scroll
 		element.addEventListener('scroll', attachCanvasToElement.bind(highlighter));
 	}
 
-	// Adjust canvas container dimensions with none scaled element
+	// Adjust canvas container position and dimensions with none scaled element
 	function canvasContainerAdjustDimensions(highlighter, canvasContainer, element) {
 		canvasContainer.style.width = element.getBoundingClientRect().width + 'px';
 		canvasContainer.style.height = element.getBoundingClientRect().height + 'px';
 		canvasContainer.style.position = 'absolute';
 		canvasContainer.style.overflow = 'auto';
-		canvasContainer.style.left = element.getBoundingClientRect().left + 'px';
-		canvasContainer.style.top = element.getBoundingClientRect().top + 'px';
+		canvasContainer.style.left = getPos(element).x + 'px';
+		canvasContainer.style.top = getPos(element).y + 'px';
 		canvasContainer.style.zIndex = highlighter.getZIndex() || '1';
 		canvasContainer.style.pointerEvents = 'none';
+		window.addEventListener("resize", adjustCanvasOnResize.bind(highlighter));
+	}
+
+	// element on resize
+	function adjustCanvasOnResize(){
+		var canvasContainer = this.getCanvasContainer();
+		var element = this.getElement();
+		canvasContainer.style.left = getPos(element).x + 'px';
+		canvasContainer.style.top = getPos(element).y + 'px';
+	}
+
+	// get position of element
+	function getPos(el) {
+		for (var lx=0, ly=0; el != null; lx += el.offsetLeft, ly += el.offsetTop, el = el.offsetParent);
+		return {x: lx,y: ly};
 	}
 
 	// Adjust canvas element dimensions
@@ -75,4 +96,4 @@ var Highlighter = (function() {
 
 	return Highlighter;
 
-})();
+})(jQuery);
