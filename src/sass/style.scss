@@ -1,6 +1,9 @@
 div.container{
 	width: 900px;
+	height: 500px;
 	margin: 0 auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 	h1{
 		text-align: center;
 	}
