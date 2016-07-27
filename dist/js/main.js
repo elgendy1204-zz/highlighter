@@ -1,7 +1,19 @@
- var highlighter = new Highlighter({
-	 container: 'body',
-	 element : '.container',
-	 zIndex : '3'
- });
+var highlighter = new Highlighter({
+	// canvas and element - whole - container
+	container: 'body',
 
-//console.log(highlighter.getElement());
+	// element selector
+	element : '.container',
+
+	// canvas z-index , default equals 10
+	zIndex : '3',
+
+	// default equals 10
+	calibarationLevel: 10,
+
+	// default equals 'e'
+	lang: 'e',
+
+	// default equals 10
+	radius: 10
+});
