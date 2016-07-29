@@ -1,24 +1,28 @@
-div.upcontainer{
-	position: absolute;
-	left: 15px;
-	top: 15px;
-	width: 800px;
-	height: 800px;
-	div.container{
-		position: absolute;
-		left: 150px;
-		top: 150px;
-		width: 500px;
-		height: 500px;
-		margin: 0 auto;
-		overflow-y: auto;
-		overflow-x: hidden;
-		h1{
-			text-align: center;
-		}
-		p{
-			font-size: 1.2em;
-			text-align: justify;
-		}
-	}
+body {
+	margin: 50px;
+    div.upcontainer {
+        // position: absolute;
+        left: 15px;
+        top: 15px;
+        width: 800px;
+        height: 800px;
+        div.container {
+            position: absolute;
+            left: 150px;
+            top: 150px;
+            width: 500px;
+            height: 500px;
+            // margin: 0 auto;
+            margin: 20px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            h1 {
+                text-align: center;
+            }
+            p {
+                font-size: 1.2em;
+                text-align: justify;
+            }
+        }
+    }
 }
