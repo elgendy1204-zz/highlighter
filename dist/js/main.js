@@ -15,5 +15,8 @@ var highlighter = new Highlighter({
 	lang: 'e',
 
 	// default equals 10
-	radius: 10
+	radius: 10,
+
+	// highlighter opacity - default equal 0.5
+	opacity: 0.5
 });
