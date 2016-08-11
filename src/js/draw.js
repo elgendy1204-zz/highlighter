@@ -45,6 +45,7 @@ function drawLine(event) {
 	var transformOriginY = $(container).css('transform-origin').split(' ')[1];
 	var calibarationLevel = this.getCalibarationLevel();
 	var lang = this.getLanguage();
+	var context = this.getContext();
 	transformOriginY = transformOriginY.replace('px', '');
 
 	elementX = calibartion.calibarateX(elementX, parents, container, calibarationLevel, lang);

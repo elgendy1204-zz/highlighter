@@ -4,43 +4,50 @@ import draw from './draw.js';
 export default (function() {
 	// initiate canvas on initiating highlighter object
 	function initCanvasOnElement(highlighter) {
-		var wholeContainer = highlighter.getWholeContainer();
-		var element = highlighter.getElement();
-		var canvasElement = document.createElement('canvas');
-		var canvasContainer = document.createElement('div');
+
+		let wholeContainer = highlighter.getWholeContainer();
+		let element = highlighter.getElement();
+		let canvasElement = document.createElement('canvas');
+		let canvasContainer = document.createElement('div');
 		wholeContainer.style.position = wholeContainer.style.position != 'absolute' ? 'relative' : 'absolute';
+
 		// Adjust canvas container dimensions with none scaled element
 		canvasContainerAdjustDimensions(highlighter, canvasContainer, element);
+
 		// Adjust canvas dimensions
 		canvasElementAdjustDimensions(canvasElement, element);
+
 		// add highlighter
 		canvasContainer.appendChild(canvasElement);
 		wholeContainer.appendChild(canvasContainer);
 		highlighter.options.canvasContainer = canvasContainer;
 		highlighter.options.canvasElement = canvasElement;
+
 		// bind canvas to element on scroll
 		element.addEventListener('scroll', attachCanvasToElement.bind(highlighter));
 		// initiate default canvas style
 		initCanvasStyle(highlighter);
+
 		// start draw on canvas
-		canvasElement.addEventListener('click', draw.startDrawing.bind(highlighter));
+		canvasElement.addEventListener('touchstart', draw.startDrawing.bind(highlighter), false);
+//		canvasElement.addEventListener('touchmove', draw.drawLine.bind(highlighter), false);
 	}
 
 	// default canvas style
 	function initCanvasStyle(highlighter){
-		var context = highlighter.getContext();
-		var radius = highlighter.getRadius();
+		let context = highlighter.getContext();
+		let radius = highlighter.getRadius();
 		context.lineCap = "round";
 		context.lineJoin = "round";
 		context.globalCompositeOperation = "source-over";
-		context.strokeStyle = 'yellow';
-		context.fillStyle = 'yellow';
+		context.strokeStyle = highlighter.getColor();
+		context.fillStyle = highlighter.getColor();
 		context.lineWidth = radius * 2;
 	}
 
 	// Adjust canvas container position and dimensions with none scaled element
 	function canvasContainerAdjustDimensions(highlighter, canvasContainer, element) {
-		let elementPositions = functions.getPos(element);
+		let elementPositions = functions.getPosition(element);
 		canvasContainer.style.width = element.getBoundingClientRect().width + 'px';
 		canvasContainer.style.height = element.getBoundingClientRect().height + 'px';
 		canvasContainer.style.position = 'absolute';
@@ -55,9 +62,9 @@ export default (function() {
 
 	// element on resize
 	function adjustCanvasOnResize(){
-		var canvasContainer = this.getCanvasContainer();
-		var element = this.getElement();
-		let elementPositions = functions.getPos(element);
+		let canvasContainer = this.getCanvasContainer();
+		let element = this.getElement();
+		let elementPositions = functions.getPosition(element);
 		canvasContainer.style.left = elementPositions.x + 'px';
 		canvasContainer.style.top = elementPositions.y + 'px';
 	}
@@ -72,8 +79,8 @@ export default (function() {
 
 	//attach canvas to element
 	function attachCanvasToElement(event){
-		var canvasContainer = this.getCanvasContainer();
-		var element = this.getElement();
+		let canvasContainer = this.getCanvasContainer();
+		let element = this.getElement();
 		canvasContainer.scrollTop = element.scrollTop;
 		canvasContainer.scrollLeft = element.scrollLeft;
 	}

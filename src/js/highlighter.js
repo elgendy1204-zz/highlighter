@@ -49,6 +49,10 @@ var Highlighter = (function($) {
 		return this.options.opacity;
 	};
 
+	Highlighter.prototype.getColor = function() {
+		return this.options.color || 'yellow';
+	};
+
 	window.Highlighter = Highlighter;
 
 	return Highlighter;

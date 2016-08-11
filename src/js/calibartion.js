@@ -20,8 +20,11 @@ export default (function() {
 	// in case of absolute divs only - calculate left
 	function calibarateElementX(clientX, parents) {
 		var additions = 0;
-		parents.each(function(number, element) {
-			additions += element.offsetLeft;
+		let accumOffsetLeft = 0;
+		parents = parents.toArray().reverse();
+		parents.forEach(function(element, number) {
+			additions += (element.getBoundingClientRect().left - accumOffsetLeft);
+			accumOffsetLeft += element.getBoundingClientRect().left;
 		});
 		return clientX - additions;
 	}
@@ -29,8 +32,11 @@ export default (function() {
 	// in case of absolute divs only - calculate top
 	function calibarateElementY(clientY, parents) {
 		var additions = 0;
-		parents.each(function(number, element) {
-			additions += element.offsetTop;
+		let accumOffsetTop = 0;
+		parents = parents.toArray().reverse();
+		parents.forEach(function(element, number) {
+			additions += (element.getBoundingClientRect().top - accumOffsetTop);
+			accumOffsetTop += element.getBoundingClientRect().top;
 		});
 		return clientY - additions;
 	}

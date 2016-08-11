@@ -18,5 +18,21 @@ var highlighter = new Highlighter({
 	radius: 10,
 
 	// highlighter opacity - default equal 0.5
-	opacity: 0.5
+	opacity: 0.5,
+
+	// highlighter color - default equal yellow
+	color: 'red'
+});
+
+
+var startBtn = $('#start');
+var endBtn = $('#end');
+
+
+startBtn.on('click', function(){
+	console.log('start');
+});
+
+endBtn.on('click', function(){
+	console.log('end');
 });
