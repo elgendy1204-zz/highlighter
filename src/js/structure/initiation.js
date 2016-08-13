@@ -20,7 +20,8 @@ function initCanvasOnElement(highlighter) {
 	canvasstyledimension.init(highlighter, canvasContainer, element, canvasElement);
 
 	// bind canvas to element on scroll
-	element.addEventListener('scroll', scrollattach.attachCanvasToElement.bind(highlighter));
+	scrollattach.initVariables(highlighter);
+	scrollattach.hookCanvasToElement();
 
 	// start draw on canvas
 	canvasElement.addEventListener('touchstart', draw.startDrawing.bind(highlighter), false);

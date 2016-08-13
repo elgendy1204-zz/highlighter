@@ -1,5 +1,4 @@
 import calibartion from './calibartion.js';
-import functions from './functions.js';
 
 // put a point on canvas
 function putPoint(highlighter, elementX, elementY) {

@@ -1,4 +1,3 @@
-import calibartion from './calibartion.js';
 import functions from './functions.js';
 
 // default canvas style
