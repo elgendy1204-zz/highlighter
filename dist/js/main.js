@@ -31,8 +31,10 @@ var endBtn = $('#end');
 
 startBtn.on('click', function(){
 	console.log('start');
+	highlighter.activateHighlighter();
 });
 
 endBtn.on('click', function(){
+	highlighter.deactivateHighlighter();
 	console.log('end');
 });

@@ -1,12 +1,6 @@
 import calibartion from './calibartion.js';
 import functions from './functions.js';
 
-export default {
-	putPoint: putPoint,
-	startDrawing: startDrawing,
-	drawLine: drawLine
-}
-
 // put a point on canvas
 function putPoint(highlighter, elementX, elementY) {
 	var context = highlighter.getContext();
@@ -56,4 +50,10 @@ function drawLine(event) {
 	putPoint(this, elementX, elementY);
 	context.beginPath();
 	context.moveTo(elementX, elementY);
+}
+
+export default {
+	putPoint: putPoint,
+	startDrawing: startDrawing,
+	drawLine: drawLine
 }

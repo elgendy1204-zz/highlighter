@@ -1,12 +1,11 @@
-import functions from './functions.js';
-import draw from './draw.js';
-import styledimension from './styledimension.js';
+import initiation from './structure/initiation.js';
+import highlighterActivation from './structure/highlighterActivation.js';
 
 var Highlighter = (function($) {
 
 	function Highlighter(options) {
 		this.options = options;
-		styledimension.initCanvasOnElement(this);
+		initiation.initCanvasOnElement(this);
 	}
 
 	Highlighter.prototype.getElement = function() {
@@ -51,6 +50,14 @@ var Highlighter = (function($) {
 
 	Highlighter.prototype.getColor = function() {
 		return this.options.color || 'yellow';
+	};
+
+	Highlighter.prototype.activateHighlighter = function() {
+		highlighterActivation.activate(this);
+	};
+
+	Highlighter.prototype.deactivateHighlighter = function() {
+		highlighterActivation.deactivate(this);
 	};
 
 	window.Highlighter = Highlighter;

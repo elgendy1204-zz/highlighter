@@ -1,8 +1,3 @@
-export default {
-	getPos: getPos,
-	getPosition: getPosition
-}
-
 // get position of element
 function getPos(el) {
 	let elements = [];
@@ -38,4 +33,9 @@ function getPosition(el) {
 		x: xPos,
 		y: yPos
 	};
+}
+
+export default {
+	getPos: getPos,
+	getPosition: getPosition
 }
