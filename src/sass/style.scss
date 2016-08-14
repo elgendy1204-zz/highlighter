@@ -29,3 +29,21 @@ body {
 		}
 	}
 }
+
+
+div.index2{
+	margin-top: 20px;
+	div.container{
+		div.row{
+			div#text{
+				font-size: 1.3em;
+				text-align: justify;
+			}
+			div.btn-group{
+				button{
+					width: 50%;
+				}
+			}
+		}
+	}
+}

@@ -21,7 +21,7 @@ var Highlighter = (function($) {
 	};
 
 	Highlighter.prototype.getWholeContainer = function() {
-		return document.querySelector(this.options.container);
+		return this.options.container ? document.querySelector(this.options.container) : document.querySelector('body');
 	};
 
 	Highlighter.prototype.getZIndex = function() {

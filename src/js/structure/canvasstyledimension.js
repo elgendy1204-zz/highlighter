@@ -39,6 +39,7 @@ function adjustCanvasOnResize(){
 // Adjust canvas element dimensions
 function canvasElementAdjustDimensions(canvasElement, element) {
 	canvasElement.style.width = element.scrollWidth + 'px';
+	canvasElement.style.display = 'block';
 	canvasElement.width = element.scrollWidth;
 	canvasElement.style.height = element.scrollHeight + 'px';
 	canvasElement.height = element.scrollHeight;
