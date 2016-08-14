@@ -37,9 +37,7 @@ export default (function() {
 		parents.forEach(function(element, number) {
 			additions += (element.getBoundingClientRect().top - accumOffsetTop);
 			accumOffsetTop += element.getBoundingClientRect().top;
-			console.log(element, additions);
 		});
-		console.log('total', additions);
 		return clientY - additions;
 	}
 

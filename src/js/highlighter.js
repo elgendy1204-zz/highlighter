@@ -1,5 +1,6 @@
 import initiation from './structure/initiation.js';
-import highlighterActivation from './structure/highlighterActivation.js';
+import highlighterActivation from './structure/highlighteractivation.js';
+import drawStyles from './structure/drawstyles.js';
 
 var Highlighter = (function($) {
 
@@ -58,6 +59,14 @@ var Highlighter = (function($) {
 
 	Highlighter.prototype.deactivateHighlighter = function() {
 		highlighterActivation.deactivate(this);
+	};
+
+	Highlighter.prototype.startMarker = function() {
+		drawStyles.initMarkStyle(this);
+	};
+
+	Highlighter.prototype.startEraser = function() {
+		drawStyles.initEraseStyle(this);
 	};
 
 	window.Highlighter = Highlighter;

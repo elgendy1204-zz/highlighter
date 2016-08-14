@@ -27,6 +27,8 @@ var highlighter = new Highlighter({
 
 var startBtn = $('#start');
 var endBtn = $('#end');
+var startMarker = $('#mark');
+var startEraser = $('#eraser');
 
 
 startBtn.on('click', function(){
@@ -35,4 +37,12 @@ startBtn.on('click', function(){
 
 endBtn.on('click', function(){
 	highlighter.deactivateHighlighter();
+});
+
+startMarker.on('click', function(){
+	highlighter.startMarker();
+});
+
+startEraser.on('click', function(){
+	highlighter.startEraser();
 });
