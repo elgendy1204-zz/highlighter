@@ -29,6 +29,8 @@ var startBtn = $('#start');
 var endBtn = $('#end');
 var startMarker = $('#mark');
 var startEraser = $('#eraser');
+var saveBtn = $('#save');
+var loadBtn = $('#load');
 
 
 startBtn.on('click', function(){
@@ -45,4 +47,12 @@ startMarker.on('click', function(){
 
 startEraser.on('click', function(){
 	highlighter.startEraser();
+});
+
+saveBtn.on('click', function(){
+	highlighter.saveImage();
+});
+
+loadBtn.on('click', function(){
+	highlighter.loadImage();
 });

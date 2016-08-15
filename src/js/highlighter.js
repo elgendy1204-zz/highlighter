@@ -1,11 +1,13 @@
 import initiation from './structure/initiation.js';
 import highlighterActivation from './structure/highlighteractivation.js';
 import drawStyles from './structure/drawstyles.js';
+import saveload from './structure/saveload.js';
 
 var Highlighter = (function($) {
 
 	function Highlighter(options) {
 		this.options = options;
+		this.image = '';
 		initiation.initCanvasOnElement(this);
 	}
 
@@ -67,6 +69,14 @@ var Highlighter = (function($) {
 
 	Highlighter.prototype.startEraser = function() {
 		drawStyles.initEraseStyle(this);
+	};
+
+	Highlighter.prototype.saveImage = function() {
+		saveload.save(this);
+	};
+
+	Highlighter.prototype.loadImage = function() {
+		saveload.load(this);
 	};
 
 	window.Highlighter = Highlighter;
