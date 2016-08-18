@@ -36,7 +36,7 @@ var Highlighter = (function($) {
 	};
 
 	Highlighter.prototype.getZIndex = function() {
-		return this.options.index || '1';
+		return this.options.zIndex || '1';
 	};
 
 	Highlighter.prototype.getCalibarationLevel = function() {

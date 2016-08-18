@@ -1,4 +1,5 @@
 import draw from './draw.js';
+import functions from './functions.js';
 import canvasstyledimension from './canvasstyledimension.js';
 import scrollattach from './scrollattach.js';
 
@@ -6,7 +7,42 @@ import scrollattach from './scrollattach.js';
 function initCanvasOnElement(highlighter) {
 	let wholeContainer = highlighter.getWholeContainer();
 	let element = highlighter.getElement();
+
+	// build canvas
 	let canvasElement = document.createElement('canvas');
+
+	// build canvas container
+	let canvasContainer = buildCanvasContainer(highlighter);
+
+	// append elements
+	canvasContainer.appendChild(canvasElement);
+	wholeContainer.appendChild(canvasContainer);
+
+	// add to highlighter
+	functions.addToHighlighterOptions(highlighter, 'canvasContainer', canvasContainer);
+	functions.addToHighlighterOptions(highlighter, 'canvasElement', canvasElement);
+
+	// init canvas styles and dimensions
+	canvasstyledimension.init(highlighter, wholeContainer, canvasContainer, element, canvasElement);
+
+	// bind canvas to element on scroll
+	scrollAttachement(highlighter);
+
+	// start draw on canvas
+	drawCode(highlighter, canvasElement);
+}
+
+function scrollAttachement(highlighter){
+	scrollattach.initVariables(highlighter);
+	scrollattach.hookCanvasToElement();
+}
+
+function drawCode(highlighter, canvasElement){
+	canvasElement.addEventListener('touchstart', draw.startDrawing.bind(highlighter), false);
+	canvasElement.addEventListener('touchmove', draw.drawLine.bind(highlighter), false);
+}
+
+function buildCanvasContainer(highlighter){
 	let canvasContainer;
 	let canvasContainerId = `#${makeCanvasContainerId(highlighter)}`;
 	if( !document.querySelector(canvasContainerId)){
@@ -15,24 +51,7 @@ function initCanvasOnElement(highlighter) {
 	} else {
 		canvasContainer = document.querySelector(canvasContainerId);
 	}
-	wholeContainer.style.position = wholeContainer.style.position != 'absolute' ? 'relative' : 'absolute';
-
-	// add highlighter
-	canvasContainer.appendChild(canvasElement);
-	wholeContainer.appendChild(canvasContainer);
-	highlighter.options.canvasContainer = canvasContainer;
-	highlighter.options.canvasElement = canvasElement;
-
-	// init canvas styles and dimensions
-	canvasstyledimension.init(highlighter, canvasContainer, element, canvasElement);
-
-	// bind canvas to element on scroll
-	scrollattach.initVariables(highlighter);
-	scrollattach.hookCanvasToElement();
-
-	// start draw on canvas
-	canvasElement.addEventListener('touchstart', draw.startDrawing.bind(highlighter), false);
-	canvasElement.addEventListener('touchmove', draw.drawLine.bind(highlighter), false);
+	return canvasContainer;
 }
 
 function makeCanvasContainerId(highlighter){

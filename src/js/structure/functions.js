@@ -35,7 +35,12 @@ function getPosition(el) {
 	};
 }
 
+function addToHighlighterOptions(highlighter, key, value){
+	highlighter.options[key] = value;
+}
+
 export default {
 	getPos: getPos,
-	getPosition: getPosition
+	getPosition: getPosition,
+	addToHighlighterOptions: addToHighlighterOptions
 }
