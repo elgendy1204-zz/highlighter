@@ -2,8 +2,8 @@ var highlighter = new Highlighter({
 	// canvas and element - whole - container
 	container: 'body',
 
-	// element selector
-	element : '.container',
+	// element uniq id (required)
+	element : 'text1',
 
 	// canvas z-index , default equals 10
 	zIndex : '3',
@@ -22,6 +22,32 @@ var highlighter = new Highlighter({
 
 	// highlighter color - default equal yellow
 	color: 'red'
+});
+
+var highlighter2 = new Highlighter({
+	// canvas and element - whole - container
+	container: 'body',
+
+	// element uniq id (required)
+	element : 'text1',
+
+	// canvas z-index , default equals 10
+	zIndex : '3',
+
+	// default equals 10
+	calibarationLevel: 10,
+
+	// default equals 'e'
+	lang: 'e',
+
+	// default equals 10
+	radius: 3,
+
+	// highlighter opacity - default equal 0.5
+	opacity: 1,
+
+	// highlighter color - default equal yellow
+	color: 'blue'
 });
 
 

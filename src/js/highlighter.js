@@ -12,7 +12,11 @@ var Highlighter = (function($) {
 	}
 
 	Highlighter.prototype.getElement = function() {
-		return document.querySelector(this.options.element);
+		let element = document.querySelector(`#${this.options.element}`);
+		if(!this.options.element || !element ){
+			throw 'element id not detected';
+		}
+		return element;
 	};
 
 	Highlighter.prototype.getCanvasElement = function() {
@@ -21,6 +25,10 @@ var Highlighter = (function($) {
 
 	Highlighter.prototype.getCanvasContainer = function() {
 		return this.options.canvasContainer;
+	};
+
+	Highlighter.prototype.getCanvasContainerDimensions = function() {
+		return this.options.canvasContainerDimensions;
 	};
 
 	Highlighter.prototype.getWholeContainer = function() {
