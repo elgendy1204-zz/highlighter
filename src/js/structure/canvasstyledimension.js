@@ -1,9 +1,10 @@
 import functions from './functions.js';
 
 // default canvas style
-function initCanvasStyle(highlighter){
-	let context = highlighter.getContext();
-	let radius = highlighter.getRadius();
+function initCanvasStyle(highlighter) {
+	let context = highlighter.getContext(),
+		radius = highlighter.getRadius();
+
 	context.lineCap = "round";
 	context.lineJoin = "round";
 	context.globalCompositeOperation = "source-over";
@@ -14,13 +15,14 @@ function initCanvasStyle(highlighter){
 
 // Adjust canvas container position and dimensions with none scaled element
 function canvasContainerAdjust(highlighter, canvasContainer, element) {
-	let elementPositions = functions.getPosition(element);
-	let canvasContainerDimensions = {
-		width: element.getBoundingClientRect().width,
-		height: element.getBoundingClientRect().height,
-		left: elementPositions.x,
-		top: elementPositions.y,
-	};
+	let elementPositions = functions.getPosition(element),
+		canvasContainerDimensions = {
+			width: element.getBoundingClientRect().width,
+			height: element.getBoundingClientRect().height,
+			left: elementPositions.x,
+			top: elementPositions.y,
+		};
+
 	functions.addToHighlighterOptions(highlighter, 'canvasContainerDimensions', canvasContainerDimensions);
 
 	canvasContainer.style.width = highlighter.getCanvasContainerDimensions().width + 'px';
@@ -35,15 +37,15 @@ function canvasContainerAdjust(highlighter, canvasContainer, element) {
 }
 
 // whole Container style
-function wholeContainerAdjust(wholeContainer){
+function wholeContainerAdjust(wholeContainer) {
 	wholeContainer.style.position = wholeContainer.style.position != 'absolute' ? 'relative' : 'absolute';
 }
 
 // element on resize
-function adjustCanvasOnResize(){
-	let canvasContainer = this.getCanvasContainer();
-	let element = this.getElement();
-	let elementPositions = functions.getPosition(element);
+function adjustCanvasOnResize() {
+	let canvasContainer = this.getCanvasContainer(),
+		element = this.getElement(),
+		elementPositions = functions.getPosition(element);
 	canvasContainer.style.left = elementPositions.x + 'px';
 	canvasContainer.style.top = elementPositions.y + 'px';
 }
@@ -62,7 +64,7 @@ function canvasElementAdjust(highlighter, canvasElement, element) {
 	canvasElement.style.opacity = highlighter.getOpacity();
 }
 
-function init(highlighter, wholeContainer, canvasContainer, element, canvasElement){
+function init(highlighter, wholeContainer, canvasContainer, element, canvasElement) {
 	wholeContainerAdjust(wholeContainer);
 	canvasContainerAdjust(highlighter, canvasContainer, element);
 	canvasElementAdjust(highlighter, canvasElement, element);

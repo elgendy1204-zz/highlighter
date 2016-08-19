@@ -2,7 +2,7 @@
 export default (function() {
 
 	function calibarateX(clientX, parents, canvasContainer, calibarationLevel, lang) {
-		var elementX = clientX;
+		let elementX = clientX;
 		elementX = calibarateElementX(elementX, parents);
 		elementX = calibarateScrollLeft(elementX, parents, canvasContainer);
 		elementX = calibarateScaleX(elementX, canvasContainer, calibarationLevel, lang);
@@ -10,7 +10,7 @@ export default (function() {
 	}
 
 	function calibarateY(clientY, parents, canvasContainer, calibarationLevel, transformOriginY) {
-		var elementY = clientY;
+		let elementY = clientY;
 		elementY = calibarateElementY(elementY, parents);
 		elementY = calibarateScrollTop(elementY, parents, canvasContainer);
 		elementY = calibarateScaleY(elementY, canvasContainer, calibarationLevel, transformOriginY);
@@ -19,8 +19,8 @@ export default (function() {
 
 	// in case of absolute divs only - calculate left
 	function calibarateElementX(clientX, parents) {
-		var additions = 0;
-		let accumOffsetLeft = 0;
+		let additions = 0,
+			accumOffsetLeft = 0;
 		parents = parents.toArray().reverse();
 		parents.forEach(function(element, number) {
 			additions += (element.getBoundingClientRect().left - accumOffsetLeft);
@@ -31,8 +31,8 @@ export default (function() {
 
 	// in case of absolute divs only - calculate top
 	function calibarateElementY(clientY, parents) {
-		var additions = 0;
-		let accumOffsetTop = 0;
+		let additions = 0,
+			accumOffsetTop = 0;
 		parents = parents.toArray().reverse();
 		parents.forEach(function(element, number) {
 			additions += (element.getBoundingClientRect().top - accumOffsetTop);
@@ -43,13 +43,14 @@ export default (function() {
 
 	// calculate scroll left
 	function calibarateScrollLeft(clientX, parents, container) {
-		var initialWidth = container.offsetWidth;
-		var scaledWidth = container.getBoundingClientRect().width;
-		var widthDiff = scaledWidth - initialWidth;
-		var scaleX = scaledWidth / initialWidth;
+		let initialWidth = container.offsetWidth,
+			scaledWidth = container.getBoundingClientRect().width,
+			widthDiff = scaledWidth - initialWidth,
+			scaleX = scaledWidth / initialWidth,
+			additions = 0;
+
 		scaleX = parseFloat(scaleX.toFixed(5));
 
-		var additions = 0;
 		parents.each(function(number, element) {
 			if (element === container) {
 				additions += element.scrollLeft + element.scrollLeft * (scaleX - 1);
@@ -62,12 +63,13 @@ export default (function() {
 
 	// calculate scroll top
 	function calibarateScrollTop(clientY, parents, container) {
-		var initialHeight = container.offsetHeight;
-		var scaledHeight = container.getBoundingClientRect().height;
-		var scaleY = scaledHeight / initialHeight;
+		let initialHeight = container.offsetHeight,
+			scaledHeight = container.getBoundingClientRect().height,
+			scaleY = scaledHeight / initialHeight,
+			additions = 0;
+
 		scaleY = parseFloat(scaleY.toFixed(5));
 
-		var additions = 0;
 		parents.each(function(number, element) {
 			if (element === container) {
 				additions += element.scrollTop + element.scrollTop * (scaleY - 1);
@@ -80,19 +82,21 @@ export default (function() {
 
 	// calculate scale X
 	function calibarateScaleX(clientX, container, calDegree, lang) {
-		var initialWidth = container.offsetWidth;
-		var scaledWidth = container.getBoundingClientRect().width;
-		var widthDiff = scaledWidth - initialWidth;
-		var scaleX = scaledWidth / initialWidth;
+		let initialWidth = container.offsetWidth,
+			scaledWidth = container.getBoundingClientRect().width,
+			widthDiff = scaledWidth - initialWidth,
+			scaleX = scaledWidth / initialWidth,
+			calibaratedValue = 0;
+
 		scaleX = parseFloat(scaleX.toFixed(5));
-		var calibaratedValue = 0;
-		for (var calLevel = 0; calLevel <= calDegree; calLevel++) {
+
+		for (let calLevel = 0; calLevel <= calDegree; calLevel++) {
 			calibaratedValue += clientX * Math.pow(1 - scaleX, calLevel);
 		}
 
 		if (lang === 'a') {
 			// calibarate width
-			for (var _calLevel = 0; _calLevel <= calDegree; _calLevel++) {
+			for (let _calLevel = 0; _calLevel <= calDegree; _calLevel++) {
 				calibaratedValue += widthDiff * Math.pow(1 - scaleX, _calLevel);
 			}
 			return calibaratedValue;
@@ -103,17 +107,19 @@ export default (function() {
 
 	// calculate scale Y
 	function calibarateScaleY(clientY, container, calDegree, transformOriginY) {
-		var initialHeight = container.offsetHeight;
-		var scaledHeight = container.getBoundingClientRect().height;
 		transformOriginY = Number(transformOriginY);
-		var transformOriginYCorrectionFactor = transformOriginY / (scaledHeight + transformOriginY);
-		var scaleY = scaledHeight / initialHeight;
+		let initialHeight = container.offsetHeight,
+			scaledHeight = container.getBoundingClientRect().height,
+			transformOriginYCorrectionFactor = transformOriginY / (scaledHeight + transformOriginY),
+			scaleY = scaledHeight / initialHeight,
+			calibaratedValue = 0;
+
 		scaleY = parseFloat(scaleY.toFixed(5));
-		var calibaratedValue = 0;
-		for (var calLevel = 0; calLevel <= calDegree; calLevel++) {
+
+		for (let calLevel = 0; calLevel <= calDegree; calLevel++) {
 			calibaratedValue += clientY * Math.pow(1 - scaleY, calLevel);
 		}
-		for (var _calLevel2 = 1; _calLevel2 <= calDegree; _calLevel2++) {
+		for (let _calLevel2 = 1; _calLevel2 <= calDegree; _calLevel2++) {
 			calibaratedValue -= transformOriginY * Math.pow(1 - scaleY, _calLevel2);
 		}
 		return calibaratedValue;

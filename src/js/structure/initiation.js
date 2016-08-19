@@ -5,14 +5,13 @@ import scrollattach from './scrollattach.js';
 
 // initiate canvas on initiating highlighter object
 function initCanvasOnElement(highlighter) {
-	let wholeContainer = highlighter.getWholeContainer();
-	let element = highlighter.getElement();
+	let wholeContainer = highlighter.getWholeContainer(),
+		element = highlighter.getElement(),
+		// build canvas
+		canvasElement = document.createElement('canvas'),
+		// build canvas container
+		canvasContainer = buildCanvasContainer(highlighter);
 
-	// build canvas
-	let canvasElement = document.createElement('canvas');
-
-	// build canvas container
-	let canvasContainer = buildCanvasContainer(highlighter);
 
 	// append elements
 	canvasContainer.appendChild(canvasElement);
@@ -32,20 +31,20 @@ function initCanvasOnElement(highlighter) {
 	drawCode(highlighter, canvasElement);
 }
 
-function scrollAttachement(highlighter){
+function scrollAttachement(highlighter) {
 	scrollattach.initVariables(highlighter);
 	scrollattach.hookCanvasToElement();
 }
 
-function drawCode(highlighter, canvasElement){
+function drawCode(highlighter, canvasElement) {
 	canvasElement.addEventListener('touchstart', draw.startDrawing.bind(highlighter), false);
 	canvasElement.addEventListener('touchmove', draw.drawLine.bind(highlighter), false);
 }
 
-function buildCanvasContainer(highlighter){
-	let canvasContainer;
-	let canvasContainerId = `#${makeCanvasContainerId(highlighter)}`;
-	if( !document.querySelector(canvasContainerId)){
+function buildCanvasContainer(highlighter) {
+	let canvasContainer,
+		canvasContainerId = `#${makeCanvasContainerId(highlighter)}`;
+	if (!document.querySelector(canvasContainerId)) {
 		canvasContainer = document.createElement('div');
 		canvasContainer.setAttribute('id', makeCanvasContainerId(highlighter));
 	} else {
@@ -54,9 +53,9 @@ function buildCanvasContainer(highlighter){
 	return canvasContainer;
 }
 
-function makeCanvasContainerId(highlighter){
-	let elementId = highlighter.options.element;
-	let canvasContainerId = `${elementId}-canvasContainer`;
+function makeCanvasContainerId(highlighter) {
+	let elementId = highlighter.options.element,
+		canvasContainerId = `${elementId}-canvasContainer`;
 	return canvasContainerId;
 }
 

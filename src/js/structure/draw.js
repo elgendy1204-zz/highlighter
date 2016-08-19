@@ -2,8 +2,8 @@ import calibartion from './calibartion.js';
 
 // put a point on canvas
 function putPoint(highlighter, elementX, elementY) {
-	var context = highlighter.getContext();
-	var radius = highlighter.getRadius();
+	let context = highlighter.getContext(),
+		radius = highlighter.getRadius();
 	context.beginPath();
 	context.arc(elementX, elementY, radius, 0, Math.PI * 2);
 	context.fill();
@@ -11,14 +11,14 @@ function putPoint(highlighter, elementX, elementY) {
 
 // start paint on canvas
 function startDrawing(event) {
-	var parents = $(event.target).parents();
-	var container = event.target.parentNode;
-	var elementX = event.touches ? event.touches[0].clientX : event.pageX;
-	var elementY = event.touches ? event.touches[0].clientY : event.pageY;
-	var transformOriginY = $(container).css('transform-origin').split(' ')[1];
-	var calibarationLevel = this.getCalibarationLevel();
-	var lang = this.getLanguage();
-	var context = this.getContext();
+	let parents = $(event.target).parents(),
+		container = event.target.parentNode,
+		elementX = event.touches ? event.touches[0].clientX : event.pageX,
+		elementY = event.touches ? event.touches[0].clientY : event.pageY,
+		transformOriginY = $(container).css('transform-origin').split(' ')[1],
+		calibarationLevel = this.getCalibarationLevel(),
+		lang = this.getLanguage(),
+		context = this.getContext();
 	transformOriginY = transformOriginY.replace('px', '');
 
 	elementX = calibartion.calibarateX(elementX, parents, container, calibarationLevel, lang);
@@ -31,14 +31,14 @@ function startDrawing(event) {
 
 // draw lines on canvas
 function drawLine(event) {
-	var parents = $(event.target).parents();
-	var container = event.target.parentNode;
-	var elementX = event.touches ? event.touches[0].clientX : event.pageX;
-	var elementY = event.touches ? event.touches[0].clientY : event.pageY;
-	var transformOriginY = $(container).css('transform-origin').split(' ')[1];
-	var calibarationLevel = this.getCalibarationLevel();
-	var lang = this.getLanguage();
-	var context = this.getContext();
+	let parents = $(event.target).parents(),
+		container = event.target.parentNode,
+		elementX = event.touches ? event.touches[0].clientX : event.pageX,
+		elementY = event.touches ? event.touches[0].clientY : event.pageY,
+		transformOriginY = $(container).css('transform-origin').split(' ')[1],
+		calibarationLevel = this.getCalibarationLevel(),
+		lang = this.getLanguage(),
+		context = this.getContext();
 	transformOriginY = transformOriginY.replace('px', '');
 
 	elementX = calibartion.calibarateX(elementX, parents, container, calibarationLevel, lang);

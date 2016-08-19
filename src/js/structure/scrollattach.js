@@ -1,40 +1,38 @@
-let element;
-let canvasContainer;
-//attach canvas to element
-let attachCanvasToElement;
-//attach element to canvas
-let attachElementToCanvas;
+let element,
+	canvasContainer,
+	attachCanvasToElement,
+	attachElementToCanvas;
 
-function attachCanvasToElementEvent(){
+function attachCanvasToElementEvent() {
 	canvasContainer.scrollTop = element.scrollTop;
 	canvasContainer.scrollLeft = element.scrollLeft;
 }
 
-function attachElementToCanvasEvent(){
+function attachElementToCanvasEvent() {
 	element.scrollTop = canvasContainer.scrollTop;
 	element.scrollLeft = canvasContainer.scrollLeft;
 }
 
-function initVariables(highlighter){
+function initVariables(highlighter) {
 	attachCanvasToElement = attachCanvasToElementEvent.bind(highlighter);
-	attachElementToCanvas= attachElementToCanvasEvent.bind(highlighter);
+	attachElementToCanvas = attachElementToCanvasEvent.bind(highlighter);
 	canvasContainer = highlighter.getCanvasContainer();
 	element = highlighter.getElement();
 }
 
-function hookCanvasToElement(){
+function hookCanvasToElement() {
 	element.addEventListener('scroll', attachCanvasToElement);
 }
 
-function unhookCanvasFromElement(){
+function unhookCanvasFromElement() {
 	element.removeEventListener('scroll', attachCanvasToElement);
 }
 
-function hookElementToCanvas(){
+function hookElementToCanvas() {
 	canvasContainer.addEventListener('scroll', attachElementToCanvas);
 }
 
-function unhookElementFromCanvas(){
+function unhookElementFromCanvas() {
 	canvasContainer.removeEventListener('scroll', attachElementToCanvas);
 }
 
