@@ -6,8 +6,9 @@ import saveload from './structure/saveload.js';
 class Highlighter {
 	constructor(options) {
 		this.options = options;
+		this.events = {};
 		this.imageData = '';
-		initiation.initCanvasOnElement(this);
+		initiation.initCanvas(this);
 	}
 
 	getElement() {

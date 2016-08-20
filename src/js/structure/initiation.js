@@ -2,9 +2,10 @@ import draw from './draw.js';
 import functions from './functions.js';
 import canvasstyledimension from './canvasstyledimension.js';
 import scrollattach from './scrollattach.js';
+import highlighterActivation from './highlighteractivation.js';
 
 // initiate canvas on initiating highlighter object
-function initCanvasOnElement(highlighter) {
+function initCanvas(highlighter) {
 	let wholeContainer = highlighter.getWholeContainer(),
 		element = highlighter.getElement(),
 		// build canvas
@@ -29,11 +30,14 @@ function initCanvasOnElement(highlighter) {
 
 	// start draw on canvas
 	drawCode(highlighter, canvasElement);
+
+	// make canvas active class
+	highlighterActivation.initActiveCanvasStyle();
 }
 
 function scrollAttachement(highlighter) {
 	scrollattach.initVariables(highlighter);
-	scrollattach.hookCanvasToElement();
+	scrollattach.hookCanvasToElement(highlighter);
 }
 
 function drawCode(highlighter, canvasElement) {
@@ -60,5 +64,5 @@ function makeCanvasContainerId(highlighter) {
 }
 
 export default {
-	initCanvasOnElement: initCanvasOnElement
+	initCanvas: initCanvas
 }

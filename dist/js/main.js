@@ -58,7 +58,6 @@ var startEraser = $('#eraser');
 var saveBtn = $('#save');
 var loadBtn = $('#load');
 
-
 startBtn.on('click', function(){
 	highlighter.activateHighlighter();
 });
@@ -81,4 +80,36 @@ saveBtn.on('click', function(){
 
 loadBtn.on('click', function(){
 	highlighter.loadImage();
+});
+
+
+var startBtn2 = $('#start2');
+var endBtn2 = $('#end2');
+var startMarker2 = $('#mark2');
+var startEraser2 = $('#eraser2');
+var saveBtn2 = $('#save2');
+var loadBtn2 = $('#load2');
+
+startBtn2.on('click', function(){
+	highlighter2.activateHighlighter();
+});
+
+endBtn2.on('click', function(){
+	highlighter2.deactivateHighlighter();
+});
+
+startMarker2.on('click', function(){
+	highlighter2.startMarker();
+});
+
+startEraser2.on('click', function(){
+	highlighter2.startEraser();
+});
+
+saveBtn2.on('click', function(){
+	highlighter2.saveImage();
+});
+
+loadBtn2.on('click', function(){
+	highlighter2.loadImage();
 });
