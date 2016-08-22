@@ -39,8 +39,13 @@ function addToHighlighterOptions(highlighter, key, value) {
 	highlighter.options[key] = value;
 }
 
+function getFromHighlighterOptions(highlighter, key) {
+	return highlighter.options[key];
+}
+
 export default {
 	getPos: getPos,
 	getPosition: getPosition,
-	addToHighlighterOptions: addToHighlighterOptions
+	addToHighlighterOptions: addToHighlighterOptions,
+	getFromHighlighterOptions: getFromHighlighterOptions
 }
