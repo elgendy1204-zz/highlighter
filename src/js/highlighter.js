@@ -21,42 +21,34 @@ class Highlighter {
 	}
 
 	getCanvasElement() {
-		// return this.options.canvasElement;
 		return functions.getFromHighlighterOptions(this, 'canvasElement');
 	}
 
 	getCanvasContainer() {
-		// return this.options.canvasContainer;
 		return functions.getFromHighlighterOptions(this, 'canvasContainer');
 	}
 
 	getCanvasContainerDimensions() {
-		// return this.options.canvasContainerDimensions;
 		return functions.getFromHighlighterOptions(this, 'canvasContainerDimensions');
 	}
 
 	getWholeContainer() {
-		// return this.options.container ? document.querySelector(this.options.container) : document.querySelector('body');
 		return functions.getFromHighlighterOptions(this, 'container') ? document.querySelector(functions.getFromHighlighterOptions(this, 'container')) : document.querySelector('body');
 	}
 
 	getZIndex() {
-		// return this.options.zIndex || '1';
 		return functions.getFromHighlighterOptions(this, 'zIndex') || '1';
 	}
 
 	getCalibarationLevel() {
-		// return this.options.calibarationLevel || 10;
 		return functions.getFromHighlighterOptions(this, 'calibarationLevel') || 10;
 	}
 
 	getLanguage() {
-		// return this.options.lang || 'e';
 		return functions.getFromHighlighterOptions(this, 'lang') || 'e';
 	}
 
 	getRadius() {
-		// return this.options.radius || 10;
 		return functions.getFromHighlighterOptions(this, 'radius') || 10;
 	}
 
@@ -65,12 +57,10 @@ class Highlighter {
 	}
 
 	getOpacity() {
-		// return this.options.opacity;
 		return functions.getFromHighlighterOptions(this, 'opacity');
 	}
 
 	getColor() {
-		// return this.options.color || 'yellow';
 		return functions.getFromHighlighterOptions(this, 'color') || 'yellow';
 	}
 
@@ -88,6 +78,10 @@ class Highlighter {
 
 	startEraser() {
 		drawStyles.initEraseStyle(this);
+	}
+
+	clearCanvas() {
+		drawStyles.clear(this);
 	}
 
 	saveImage() {

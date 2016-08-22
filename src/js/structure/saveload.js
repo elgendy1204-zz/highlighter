@@ -1,13 +1,16 @@
+import drawstyles from './drawstyles.js';
+
 function save(highlighter) {
 	let canvasElement = highlighter.getCanvasElement(),
 		imageData = canvasElement.toDataURL();
 	highlighter.imageData = imageData;
-	console.log(imageData);
 	return imageData;
 }
 
 function load(highlighter) {
-	if (highlighter.image) {
+	if (highlighter.imageData) {
+		drawstyles.clear(highlighter);
+		drawstyles.initMarkStyle(highlighter);
 		let canvasElement = highlighter.getCanvasElement(),
 			image = new Image();
 		image.src = highlighter.imageData;
