@@ -41,8 +41,14 @@ function scrollAttachement(highlighter) {
 }
 
 function drawCode(highlighter, canvasElement) {
-	canvasElement.addEventListener('touchstart', draw.startDrawing.bind(highlighter), false);
-	canvasElement.addEventListener('touchmove', draw.drawLine.bind(highlighter), false);
+	if(highlighter.getDrawType() == 'touch'){
+		canvasElement.addEventListener('touchstart', draw.startDrawing.bind(highlighter), false);
+		canvasElement.addEventListener('touchmove', draw.drawLine.bind(highlighter), false);
+	} else {
+		canvasElement.addEventListener('mousedown', draw.startDrawing.bind(highlighter), false);
+		canvasElement.addEventListener('mousemove', draw.drawLine.bind(highlighter), false);
+		canvasElement.addEventListener('mouseup', draw.endDrawing.bind(highlighter), false);
+	}
 }
 
 function buildCanvasContainer(highlighter) {

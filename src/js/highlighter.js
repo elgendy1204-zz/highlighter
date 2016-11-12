@@ -20,6 +20,14 @@ class Highlighter {
 		return element;
 	}
 
+	getDrawType() {
+		let drawType = functions.getFromHighlighterOptions(this, 'drawType') || 'mouse';
+		if(drawType == 'mouse'){
+			this.mouseState = 0;
+		}
+		return drawType;
+	}
+
 	getCanvasElement() {
 		return functions.getFromHighlighterOptions(this, 'canvasElement');
 	}

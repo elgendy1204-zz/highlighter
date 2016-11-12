@@ -27,6 +27,11 @@ function startDrawing(event) {
 	putPoint(this, elementX, elementY);
 	context.beginPath();
 	context.moveTo(elementX, elementY);
+	this.mouseState = 1;
+}
+
+function endDrawing(){
+	this.mouseState = 0;
 }
 
 // draw lines on canvas
@@ -38,21 +43,33 @@ function drawLine(event) {
 		transformOriginY = $(container).css('transform-origin').split(' ')[1],
 		calibarationLevel = this.getCalibarationLevel(),
 		lang = this.getLanguage(),
-		context = this.getContext();
+		context = this.getContext(),
+		drawType = this.getDrawType();
 	transformOriginY = transformOriginY.replace('px', '');
 
 	elementX = calibartion.calibarateX(elementX, parents, container, calibarationLevel, lang);
 	elementY = calibartion.calibarateY(elementY, parents, container, calibarationLevel, transformOriginY);
 
-	context.lineTo(elementX, elementY);
-	context.stroke();
-	putPoint(this, elementX, elementY);
-	context.beginPath();
-	context.moveTo(elementX, elementY);
+	if(drawType == 'mouse'){
+		if(event.which == 1 && this.mouseState == 0){
+			context.lineTo(elementX, elementY);
+			context.stroke();
+			putPoint(this, elementX, elementY);
+			context.beginPath();
+			context.moveTo(elementX, elementY);
+		}
+	} else{
+		context.lineTo(elementX, elementY);
+		context.stroke();
+		putPoint(this, elementX, elementY);
+		context.beginPath();
+		context.moveTo(elementX, elementY);
+	}
 }
 
 export default {
 	putPoint: putPoint,
 	startDrawing: startDrawing,
-	drawLine: drawLine
+	drawLine: drawLine,
+	endDrawing: endDrawing
 }

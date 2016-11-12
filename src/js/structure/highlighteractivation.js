@@ -4,14 +4,18 @@ let activeCanvasClass = 'active-canvas-highlighter';
 
 function activate(highlighter){
 	let canvasContainer = highlighter.getCanvasContainer();
+	let canvasElement = highlighter.getCanvasElement();
 	canvasContainer.style.pointerEvents = 'auto';
+	canvasElement.style.zIndex = '10';
 	scrollattach.unhookCanvasFromElement(highlighter);
 	scrollattach.hookElementToCanvas(highlighter);
 }
 
 function deactivate(highlighter){
 	let canvasContainer = highlighter.getCanvasContainer();
+	let canvasElement = highlighter.getCanvasElement();
 	canvasContainer.style.pointerEvents = 'none';
+	canvasElement.style.zIndex = '1';
 	scrollattach.hookCanvasToElement(highlighter);
 	scrollattach.unhookElementFromCanvas(highlighter);
 }

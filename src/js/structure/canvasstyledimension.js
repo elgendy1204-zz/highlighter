@@ -58,6 +58,7 @@ function canvasElementAdjust(highlighter, canvasElement, element) {
 	canvasElement.style.left = '0px';
 	canvasElement.style.right = '0px';
 	canvasElement.style.zIndex = '1';
+	canvasElement.style.cursor = 'pointer';
 	canvasElement.width = element.scrollWidth;
 	canvasElement.style.height = element.scrollHeight + 'px';
 	canvasElement.height = element.scrollHeight;
