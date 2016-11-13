@@ -48,4 +48,4 @@ export default {
 	getPosition: getPosition,
 	addToHighlighterOptions: addToHighlighterOptions,
 	getFromHighlighterOptions: getFromHighlighterOptions
-}
+};

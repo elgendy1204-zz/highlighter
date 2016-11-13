@@ -72,4 +72,4 @@ export default {
 	startDrawing: startDrawing,
 	drawLine: drawLine,
 	endDrawing: endDrawing
-}
+};

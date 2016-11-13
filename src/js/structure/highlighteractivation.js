@@ -35,4 +35,4 @@ export default {
 	deactivate: deactivate,
 	initActiveCanvasStyle: initActiveCanvasStyle,
 	activeCanvasClass: activeCanvasClass
-}
+};

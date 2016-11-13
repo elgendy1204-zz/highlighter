@@ -3,6 +3,7 @@ import highlighterActivation from './structure/highlighteractivation.js';
 import drawStyles from './structure/drawstyles.js';
 import saveload from './structure/saveload.js';
 import functions from './structure/functions.js';
+import canvasstyledimension from './structure/canvasstyledimension.js';
 
 class Highlighter {
 	constructor(options) {
@@ -98,6 +99,10 @@ class Highlighter {
 
 	loadImage() {
 		saveload.load(this);
+	}
+
+	updateDimensions(){
+		canvasstyledimension.init(this, this.getWholeContainer(), this.getCanvasContainer(), this.getElement(), this.getCanvasElement());
 	}
 }
 

@@ -71,4 +71,4 @@ function makeCanvasContainerId(highlighter) {
 
 export default {
 	initCanvas: initCanvas
-}
+};

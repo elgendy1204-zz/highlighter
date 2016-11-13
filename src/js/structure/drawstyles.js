@@ -18,4 +18,4 @@ export default {
 	initMarkStyle: initMarkStyle,
 	initEraseStyle: initEraseStyle,
 	clear: clear
-}
+};

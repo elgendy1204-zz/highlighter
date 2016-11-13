@@ -74,4 +74,4 @@ function init(highlighter, wholeContainer, canvasContainer, element, canvasEleme
 
 export default {
 	init: init
-}
+};

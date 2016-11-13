@@ -40,4 +40,4 @@ export default {
 	unhookCanvasFromElement: unhookCanvasFromElement,
 	hookElementToCanvas: hookElementToCanvas,
 	unhookElementFromCanvas: unhookElementFromCanvas
-}
+};

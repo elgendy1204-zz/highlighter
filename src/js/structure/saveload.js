@@ -23,4 +23,4 @@ function load(highlighter) {
 export default {
 	save: save,
 	load: load
-}
+};
